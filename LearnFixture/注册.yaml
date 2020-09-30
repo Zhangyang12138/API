@@ -1,0 +1,79 @@
+
+url="http://192.168.150.222:8081/futureloan/mvc/api/member/register"
+#验证有昵称注册成功
+-data: {"mobilephone":"18273649822","pwd":"123456","regname":"Amy"}
+  expect: {"code":10001,"data":{},"msg":"注册成功","status":1}
+
+#验证无昵称注册成功
+-data: {"mobilephone":"18273649823","pwd":"123456"}
+  expect: {"code":10001,"data":{},"msg":"注册成功","status":1}
+
+#验证注册用户时输入合理的手机号、用户名、6位密码，注册成功
+-data: {"mobilephone":"18273649824","pwd":"123456","regname":"Amy"}
+  expect: {"code":10001,"data":{},"msg":"注册成功","status":1}
+
+#验证注册用户时输入合理的手机号、用户名、8位密码，注册成功
+-data: {"mobilephone":"18273649825","pwd":"12345678","regname":"Amy"}
+  expect: {"code":10001,"data":{},"msg":"注册成功","status":1}
+
+#验证注册用户时输入合理的手机号、用户名、18位密码，注册成功
+-data: {"mobilephone":"18273649826","pwd":"123456789011121314","regname":"Amy"}
+  expect: {"code":10001,"data":{},"msg":"注册成功","status":1}
+
+#验证mobilephone为空时,注册失败
+-data: {"mobilephone":"","pwd":"123456","regname":"Amy"}
+  expect: {"code":20103,"data":{},"msg":"参数错误：参数不能为空","status":0}
+
+#验证password为空时注册失败
+-data: {"mobilephone":"18273649827","pwd":"","regname":"Amy"}
+  expect: {"code":20103,"data":{},"msg":"参数错误：参数不能为空","status":0}
+
+#验证参数为空时注册失败
+-data: {"mobilephone":"","pwd":"","regname":""}
+  expect: {"code":20103,"data":{},"msg":"参数错误：参数不能为空","status":0}
+
+#验证pwd长度为5时注册失败
+-data: {"mobilephone":"18273649827","pwd":"12345"}
+  expect: {"code":20108,"data":{},"msg":"密码长度必须为6~18","status":0}
+
+#验证pwd长度为19时注册失败
+-data: {"mobilephone":"18273649828","pwd":"1234567890111213145"}
+  expect: {"code":20108,"data":{},"msg":"密码长度必须为6~18","status":0}
+
+#验证手机号小于11位时注册失败
+-data: {"mobilephone":"182736498","pwd":"123456"}
+  expect: {"code":20109,"data":{},"msg":"手机号码格式不正确","status":0}
+
+#验证mobilephone大于11位时注册失败
+-data: {"mobilephone":"182736498291","pwd":"123456"}
+  expect: {"code":20109,"data":{},"msg":"手机号码格式不正确","status":0}
+
+#验证mobilephone含特殊字符时注册失败
+-data: {"mobilephone":"18273@_18291","pwd":"123456"}
+  expect: {"code":20109,"data":{},"msg":"手机号码格式不正确","status":0}
+
+#验证手机号码已被注册时注册失败
+-data: {"mobilephone":"18391697618","pwd":"123456"}
+  expect: {"code":20110,"data":{},"msg":"手机号码已被注册","status":0}
+
+#验证非手机号码格式时登录失败
+-data: {"mobilephone":"11191697618","pwd":"123456"}
+  expect: {"code":20109,"data":{}, "msg":"手机号码格式不正确","status":0}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
